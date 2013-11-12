@@ -2,9 +2,24 @@
 	<!--主体内容-->
 	<div class="container">
 	<?php $i=1; if ( have_posts() ) : while ( have_posts() ) : the_post();  ?>
-		
-		<?php if($i++%2==1):?>
-		 <hr class="featurette-divider">
+		<?php
+				if(strstr(get_the_category($post->ID)[0]->name,"miniblog")):
+		?>
+		<hr class="featurette-divider">
+		<div class="row featurette">
+			<div class="col-md-7">
+				<a href="<?php the_permalink();?>"><?php echo get_avatar(get_bloginfo ('admin_email'),45); ?></a>
+				<div >
+					<div class="minblog">
+					<p class="content"><?php the_content();?></p>
+					<p class="small"><span class="glyphicon glyphicon-time"></span> <?php the_time('Y-m-d');?></p>
+					</div>					
+					<div class="minidot"></div>
+				</div>
+			</div>
+		</div>
+		<?php elseif($i++%2==1):?>
+		<hr class="featurette-divider">
 		<div class="row featurette">
 			<div class="col-md-7">
 				<h2 class="featurette-heading"><a class="title" href="<?php the_permalink();?>" rel="bookmark"><?php the_title();?></a></h2>

@@ -28,8 +28,9 @@
 				$i = 1;
 				$comments = get_comments('number=200&status=approve&type=comment'); //取得前200个评论，如果你每天的回复量超过200可以适量加大
 				foreach ($comments as $rc_comment) {
-					if ($rc_comment->comment_author_email != $my_email) {
+					if ($rc_comment->comment_author_email != $my_email) {					
 			?>
+					
 					<li class="list-group-item"><?php echo get_avatar($rc_comment->comment_author_email,32); ?><span class="comment_author"><?php echo $rc_comment->comment_author; ?> says:</span><br /><a href="<?php echo get_permalink($rc_comment->comment_post_ID); ?>#comment-<?php echo $rc_comment->comment_ID; ?>"><?php echo convert_smilies($rc_comment->comment_content); ?></a></li>
 			<?php
 					if ($i == $show_comments) break; //评论数量达到退出遍历
